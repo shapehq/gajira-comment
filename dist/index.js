@@ -24,9 +24,11 @@ module.exports = class {
 
     console.log(`issueIds: ${issueIds}`)
 
-    console.log(`Adding comment to ${issueIds.length} issues: \n${comment}`)
+    const issueList = issueIds.split(",");
 
-    for (const issueId in issueIds) {
+    console.log(`Adding comment to ${issueList.length} issues: \n${comment}`)
+
+    for (const issueId in issueList) {
       console.log(`Adding comment to ${issueId}`)
       // await this.Jira.addComment(issueId, { body: comment })
     }    
