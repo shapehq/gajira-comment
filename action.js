@@ -16,6 +16,8 @@ module.exports = class {
     const issueIds = this.argv.issues || this.config.issues || null
     const { comment } = this.argv
 
+    console.log(`issueIds: ${issueIds}`)
+
     console.log(`Adding comment to ${issueIds.length} issues: \n${comment}`)
 
     for (const issueId in issueIds) {
