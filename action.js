@@ -16,14 +16,14 @@ module.exports = class {
     const issueIds = this.argv.issues || this.config.issues || null
     const { comment } = this.argv
 
-    console.log(`issueIds: ${issueIds}`)
+    const issueList = issueIds.split(",");
 
-    console.log(`Adding comment to ${issueIds.length} issues: \n${comment}`)
+    console.log(`Adding comment to ${issueList.length} issues: \n${comment}`)
 
-    for (const issueId in issueIds) {
+    for (const issueId of issueList) {
       console.log(`Adding comment to ${issueId}`)
-      // await this.Jira.addComment(issueId, { body: comment })
-    }    
+      await this.Jira.addComment(issueId, { body: comment })
+    }
 
     return {}
   }
