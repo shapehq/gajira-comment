@@ -32503,7 +32503,7 @@ async function exec () {
 
 function parseArgs () {
   return {
-    issue: core.getInput('issue'),
+    issues: core.getInput('issues'),
     comment: core.getInput('comment')
   }
 }
