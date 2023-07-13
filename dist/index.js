@@ -30,11 +30,9 @@ module.exports = class {
 
     console.log(`Adding comment to ${issueList.length} issues: \n${comment}`)
 
-    console.log(`Adding comment to ${issueList[0]}`)
-
     for (const id of issueList) {
       console.log(`Adding comment to ${id}`)
-      // await this.Jira.addComment(issueId, { body: comment })
+      await this.Jira.addComment(id, { body: comment })
     }    
 
     return {}
