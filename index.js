@@ -26,7 +26,7 @@ async function exec () {
       return
     }
 
-    console.log('Failed to comment an issue.')
+    console.log('Failed to comment issues.')
     process.exit(78)
   } catch (error) {
     console.error(error)
@@ -36,7 +36,7 @@ async function exec () {
 
 function parseArgs () {
   return {
-    issue: core.getInput('issue'),
+    issues: core.getInput('issues'),
     comment: core.getInput('comment')
   }
 }

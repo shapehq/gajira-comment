@@ -13,11 +13,15 @@ module.exports = class {
   }
 
   async execute () {
-    const issueId = this.argv.issue || this.config.issue || null
+    const issueIds = this.argv.issues || this.config.issues || null
     const { comment } = this.argv
 
-    console.log(`Adding comment to ${issueId}: \n${comment}`)
-    await this.Jira.addComment(issueId, { body: comment })
+    console.log(`Adding comment to ${issueIds.length} issues: \n${comment}`)
+
+    for (const issueId in issueIds) {
+      console.log(`Adding comment to ${issueId}`)
+      // await this.Jira.addComment(issueId, { body: comment })
+    }    
 
     return {}
   }
