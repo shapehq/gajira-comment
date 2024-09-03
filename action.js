@@ -16,15 +16,29 @@ module.exports = class {
     const issueIds = this.argv.issues || this.config.issues || null
     const { comment } = this.argv
 
-    console.log(`!${issueIds}!`);
+    // Error handling for empty or null issueIds
+    if (!issueIds) {
+      console.log('No issue IDs provided. Exiting without adding comments.')
+      return {}
+    }
 
-    const issueList = issueIds.split(",");
+    const issueList = issueIds.split(",").filter(issueId => issueId.trim() !== '') // Filter out empty strings
+
+    // Additional check for empty issueList after filtering
+    if (issueList.length === 0) {
+      console.log('No valid issue IDs provided after filtering. Exiting without adding comments.')
+      return {}
+    }
 
     console.log(`Adding comment to ${issueList.length} issues: \n${comment}`)
 
     for (const issueId of issueList) {
       console.log(`Adding comment to ${issueId}`)
-      await this.Jira.addComment(issueId, { body: comment })
+      try {
+        await this.Jira.addComment(issueId, { body: comment })
+      } catch (error) {
+        console.error(`Failed to add comment to ${issueId}:`, error.message)
+      }
     }
 
     return {}
