@@ -24,7 +24,7 @@ module.exports = class {
 
     // Error handling for empty or null issueIds
     if (!issueIds) {
-      console.log('No issue IDs provided. Exiting without adding comments.')
+      console.log('::warning::No issue IDs provided. Exiting without adding comments.')
       return {}
     }
 
@@ -32,7 +32,7 @@ module.exports = class {
 
     // Additional check for empty issueList after filtering
     if (issueList.length === 0) {
-      console.log('No valid issue IDs provided after filtering. Exiting without adding comments.')
+      console.log('::warning::No valid issue IDs provided after filtering. Exiting without adding comments.')
       return {}
     }
 
@@ -43,7 +43,7 @@ module.exports = class {
       try {
         await this.Jira.addComment(issueId, { body: comment })
       } catch (error) {
-        console.error(`Failed to add comment to ${issueId}:`, error.message)
+        console.error(`::warning::Failed to add comment to ${issueId}:`, error.message)
       }
     }
 
