@@ -16,6 +16,8 @@ module.exports = class {
     const issueIds = this.argv.issues || this.config.issues || null
     const { comment } = this.argv
 
+    console.log(`!${issueIds}!`);
+
     const issueList = issueIds.split(",");
 
     console.log(`Adding comment to ${issueList.length} issues: \n${comment}`)
